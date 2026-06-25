@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Crimson Midnight - Logbook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: #080b11; /* Hitam kebiruan malam */
+            color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 160px 15px 40px 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 1. BACKGROUND UTAMA KRISTAL BENING (Gambar Baru Anda) */
+        .background-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('ca56e992a7e5c267114ef6bf8494d6e3.jpg');
+            background-size: contain; /* Gambar utuh dari ujung ke ujung tanpa terpotong */
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            filter: brightness(1.05) contrast(1.05);
+        }
+
+        /* Proteksi kontras teks dengan gradasi warna malam & lampion senja */
+        .blur-protection {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(13, 18, 29, 0.4) 20%, rgba(8, 11, 17, 0.9) 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 2. FOTO PROFIL BESAR - MENYESUAIKAN ISI FOTO BARU */
+        .corner-profile {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3.5px solid #d91b43; /* Merah Crimson senada dengan dasi & mata */
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(217, 27, 67, 0.85), inset 0 0 15px rgba(217, 27, 67, 0.6);
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: crimsonPulse 1.5s infinite alternate;
+        }
+
+        .corner-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%; /* Pas membingkai area wajah karakter baru */
+            filter: brightness(1.1) contrast(1.15);
+        }
+
+        .corner-profile:hover {
+            transform: scale(1.18) rotate(-8deg);
+            border-color: #ffffff;
+            box-shadow: 0 0 40px rgba(217, 27, 67, 1), 0 0 15px #ffffff;
+        }
+
+        @keyframes crimsonPulse {
+            0% { box-shadow: 0 0 20px rgba(217, 27, 67, 0.6), inset 0 0 10px rgba(217, 27, 67, 0.4); }
+            100% { box-shadow: 0 0 35px rgba(217, 27, 67, 1), 0 0 15px rgba(8, 11, 17, 0.8); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: auto;
+        }
+
+        /* Glassmorphic Card Style - Bertema Kegelapan Kota Malam */
+        .glass-card {
+            background: rgba(13, 17, 26, 0.85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(217, 27, 67, 0.3); /* Border merah tipis elegan */
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+        }
+
+        /* TITLES */
+        .header-section { text-align: center; }
+        
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        h1 span {
+            color: #d91b43; /* Merah Crimson */
+            text-shadow: 0 0 15px rgba(217, 27, 67, 0.6);
+        }
+
+        .subtitle {
+            font-size: 11px;
+            color: #8da2bb; /* Biru abu-abu redup */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #d91b43;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+            border-left: 4px solid #d91b43;
+            padding-left: 10px;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .stats-box {
+            background: rgba(18, 24, 38, 0.9);
+            border: 1px solid rgba(217, 27, 67, 0.15);
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stats-label { font-size: 10px; color: #8da2bb; text-transform: uppercase; }
+        .stats-value { font-size: 24px; font-weight: 800; color: #ffffff; margin-top: 2px; }
+        .stats-value.highlight { color: #d91b43; }
+
+        /* TEXT INSIGHTS SECTION */
+        .game-info-text {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .perspective-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .perspective-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 12.5px;
+            color: #cbd5e1;
+        }
+
+        .perspective-list li::before {
+            content: "🩸"; /* Aksen merah senada mata tajam karakter */
+            position: absolute;
+            left: 0;
+            font-size: 12px;
+        }
+
+        /* DOKUMENTASI VAULT */
+        .doc-item {
+            background: rgba(8, 11, 17, 0.7);
+            border: 1px solid rgba(217, 27, 67, 0.2);
+            border-radius: 18px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .doc-meta { margin-bottom: 10px; }
+        
+        .doc-tag {
+            display: inline-block;
+            font-size: 9px;
+            background: rgba(217, 27, 67, 0.2);
+            color: #d91b43;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .doc-title { font-size: 14px; font-weight: 600; color: #ffffff; }
+
+        .doc-screenshot-frame {
+            width: 100%;
+            height: 240px;
+            background: #05070a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 8px;
+        }
+
+        .doc-screenshot-frame img {
+            width: 100%; height: 100%; object-fit: contain; display: block;
+        }
+
+        footer {
+            text-align: center;
+            color: #475569;
+            font-size: 11px;
+            margin-top: 30px;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Foto Profil Besar Bertema Crimson Midnight di Pojok Kanan Atas -->
+    <div class="corner-profile">
+        <img src="ca56e992a7e5c267114ef6bf8494d6e3.jpg" alt="Crimson Profile View">
+    </div>
+
+    <!-- Komponen Latar Belakang Kristal HD -->
+    <div class="background-canvas"></div>
+    <div class="blur-protection"></div>
+
+    <div class="container">
+
+        <!-- PROFILE BANNER -->
+        <div class="glass-card header-section">
+            <h1>FREE FIRE <span>SyeraLuna</span></span></h1>
+            <div class="subtitle">Midnight Combat Log & Database</div>
+        </div>
+
+        <!-- CORE STATUS -->
+        <div class="glass-card">
+            <div class="section-title">Active Survivor Info</div>
+            <div class="stats-grid">
+                <div class="stats-box">
+                    <div class="stats-label">Highest Rank</div>
+                    <div class="stats-value highlight" style="font-size: 20px; line-height: 36px;">Grandmaster</div>
+                </div>
+                <div class="stats-box">
+                    <div class="stats-label">KD Ratio (Squad)</div>
+                    <div class="stats-value" style="font-size: 22px; line-height: 36px;">4.85</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEKSI: PENJELASAN GAME & PERSPEKTIF PEMAIN -->
+        <div class="glass-card">
+            <div class="section-title">About Free Fire</div>
+            <p class="game-info-text">
+                <strong>Garena Free Fire</strong> adalah game *Battle Royale* berkecepatan tinggi yang menguji insting menembak, kecepatan refleks pemasangan *gloo wall*, serta taktik penggabungan skill karakter unik. Sebanyak 50 pemain terjun ke pulau untuk saling bertempur demi mempertahankan nyawa hingga titik darah terakhir demi meraih gelar mutlak: <strong>BOOYAH!</strong>
+            </p>
+            
+            <div class="section-title" style="margin-top: 20px; font-size: 12px;">What Survivors Truly Feel</div>
+            <ul class="perspective-list">
+                <li>
+                    <strong>Adrenalin Baku Tembak:</strong> Detak jantung yang berpacu cepat saat terlibat duel jarak dekat (*close-combat*), di mana refleks *Gloo Wall* sekejap mata membedakan hidup atau kembali ke *Lobby*.
+                </li>
+                <li>
+                    <strong>Kombinasi Skill Unik:</strong> Kepuasan meracik paduan skill pasif dan aktif dari berbagai karakter yang selaras dengan taktik tim atau gaya bermain personal.
+                </li>
+                <li>
+                    <strong>Estetika Gacha & Skin:</strong> Sensasi kepuasan tersendiri ketika berhasil mendapatkan seri skin senjata legendaris eksklusif ber-atribut tinggi di tengah ketatnya persaingan *event*.
+                </li>
+                <li>
+                    <strong>Solidaritas Skuad:</strong> Momen keseruan komunikasi suara intens saat menyusun taktik penyergapan bersama rekan satu tim demi mengamankan kemenangan zona akhir.
+                </li>
+            </ul>
+        </div>
+
+        <!-- SEKSI DOKUMENTASI UTAMA -->
+        <div class="glass-card">
+            <div class="section-title">In-Game Documentation</div>
+
+            <!-- Dokumentasi 1: Koleksi Vault / Skin Utama -->
+            <div class="doc-item">
+                <div class="doc-meta">
+                    <span class="doc-tag">Vault Showcase</span>
+                    <div class="doc-title">Main Bundle Set & Evo Gun Collection</div>
+                </div>
+                <div class="doc-screenshot-frame">
+                    <img src="images_09.jpg" alt="Screenshot Vault Skin/Senjata (Belum diisi)">
+                </div>
+            </div>
+
+            <!-- Dokumentasi 2: Statistik Rank / Riwayat Pertandingan -->
+            <div class="doc-item">
+                <div class="doc-meta">
+                    <span class="doc-tag">Rank History</span>
+                    <div class="doc-title">Battle Royale & Clash Squad Tier Rank</div>
+                </div>
+                <div class="doc-screenshot-frame">
+                    <img src="images_90.jpg" alt="Screenshot Statistik Rank (Belum diisi)">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            SYERALUNA ARCHIVE SYSTEM<br>
+            © 2026 SYERALUNA ALL RIGHTS RESERVED
+        </footer>
+
+    </div>
+
+</body>
+</html>
